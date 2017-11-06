@@ -1,4 +1,5 @@
 /venv
 /fash/config.py
+/fash/constants.py
 *.pyc
 /fash/models/initiate.py
