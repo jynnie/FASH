@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+<div class="header">
+  <div class="ui text menu">
+     <a class="header item" href="/">
+       FASH
+     </a>
+     <a class="item" href="/">
+       Leaderboard
+     </a>
+     <a class="item" href="/">
+       Play
+     </a>
+     <div class="right menu">
+       {% if user is not none %}
+         <a class="item" href="/profile">
+           Profile
+         </a>
+         <a class="item" href="/logout">
+           Logout
+         </a>
+       {% else %}
+         <a class="item" href="/login">
+           Login
+         </a>
+       {% endif %}
+     </div>
+  </div>
+</div>
+{% block content %}
+{% endblock %}
+{% endblock %}

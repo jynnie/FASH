@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>ATS FASH 2017</title>
+
+    <!-- Stylesheets -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='semantic/semantic.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='normalize/normalize.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#146eff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+  </head>
+  <body>
+    {% block navbar %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "nav.html" %}
+
+{% block content %}
+  <h1 class="ui header"> {{ user.name }} </h1>
+  <p>
+    <strong>Email</strong>: {{ user.email }} </br>
+    <strong>Family</strong>: {{ user.family }} </br>
+    <strong>Points</strong>: {{ user.points }}
+  </p>
+  <h3 class="ui header"> Completed FASH Tasks </h2>
+{% endblock %}
