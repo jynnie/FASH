@@ -71,6 +71,32 @@ def get_user():
         return decorated
     return decorator
 
+def get_user_and_tasks():
+    def decorator(f):
+        @wraps(f)
+        def decorated(*args, **kwargs):
+            engine = create_engine('sqlite:///fash.db', echo=True)
+            Session = sessionmaker(bind=engine)
+            db = Session()
+
+            if 'jwt' in request.cookies:
+                try:
+                    decoded = decode_token(request.cookies['jwt'])
+                except Exception as e:
+                    # FIXME Repeated code
+                    f.__globals__['user'] = None
+                user = db.query(Users).filter(Users.id==decoded).first()
+                f.__globals__['user'] = user
+            else:
+                f.__globals__['user'] = None
+
+            tasks = db.query(Tasks).filter(Tasks.active == True).all()
+            f.__globals__['tasks'] = tasks
+            return f(*args, **kwargs)
+
+        return decorated
+    return decorator
+
 def requires_auth_s():
     def decorator(f):
         @wraps(f)

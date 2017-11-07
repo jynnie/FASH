@@ -2,4 +2,39 @@
 
 {% block content %}
   <h1 class="ui header">Admin Page</h1>
+
+  <h2 class="ui header">Tasks</h2>
+  <div class="ui form">
+    <form class="inline fields" method="POST">
+      <div class="ten wide field">
+        <input type="text" name="new_task" placeholder="Task">
+      </div>
+      <div class="five wide field">
+        <input type="text" name="new_points" placeholder="Points">
+      </div>
+      <button class="ui button" type="submit">Create</button>
+    </form>
+  </div>
+  {{ error }}
+
+  <table class="ui celled striped table">
+    <thead>
+      <tr><th colspan="3">
+        Active Tasks
+      </th>
+    </tr></thead>
+    <tbody>
+      {% for task in tasks %}
+        <tr>
+          <td>
+            {{ task.name }}
+          </td>
+          <td class="right aligned collapsing">{{ task.value }} points</td>
+          <td class="right aligned collapsing"><a href= {{ "/edittask?task=" + task.id|string }}> edit </a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2 class="ui header">Review Submissions</h2>
 {% endblock %}
