@@ -1,0 +1,25 @@
+{% extends "nav.html" %}
+
+{% block content %}
+  <h1 class="ui header">
+    {{ user.name }}
+    <div class="sub header">Edit profile information</div>
+  </h1>
+
+  <p>
+    <form class="ui form" method='POST'>
+      <div class="field">
+        <label>Select your family:</label>
+        <select name="family" class="ui selection dropdown">
+          <option name="Greater than U" class="item">Greater than U</option>
+          <option name="Funky Bobasaurs" class="item">Funky Bobasaurs</option>
+          <option name="BFFL" class="item">BFFL</option>
+          <option name="Pirates" class="item">Pirates</option>
+          <option name="Gangstas" class="item">Gangstas</option>
+        </select>
+      </div>
+      <button class="ui button" type="submit">Save</button>
+    </form>
+    {{ error }}
+  </p>
+{% endblock %}

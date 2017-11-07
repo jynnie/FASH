@@ -39,5 +39,6 @@ class Completed(Base):
     id              = Column(Integer, primary_key=True)
     user            = Column(Integer, ForeignKey('Users.id'))
     task_name       = Column(Integer, ForeignKey('Tasks.id'))
+    valid           = Column(Boolean)
 
 Base.metadata.create_all(engine)

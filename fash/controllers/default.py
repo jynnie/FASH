@@ -12,12 +12,19 @@ from flask import (
         abort
     )
 
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
+@app.route('/')
+@app.route('/index')
 @get_user()
 def index():
     return render_template("home.html", user=user)
 
+@app.route('/leaderboard')
+def leaderboard():
+    return 'leaderboard.html not yet implemented'
+
 @app.route('/profile')
+@get_user()
 def profile():
-    return render_template("profile.html", user=user)
+    if user is not None:
+        return render_template("profile.html", user=user)
+    return render_template('error.html', login_url=DOMAIN + "/login", error="You need to login first >:(", user=None)

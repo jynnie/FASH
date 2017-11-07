@@ -103,7 +103,7 @@ def login_page():
         if error == "":
             return redirect(login_url)
         else:
-            return render_template('error.html', login_url=login_url, error=error)
+            return render_template('error.html', login_url=login_url, error=error, user=None)
 
     except Exception as e:
         print('there was an exception')
@@ -122,7 +122,7 @@ def login_page():
         auth_req = client.construct_AuthorizationRequest(request_args=args)
         login_url = auth_req.request('https://oidc.mit.edu/authorize')
 
-        return render_template('error.html', login_url=login_url, error="rip that didn't work :(")
+        return render_template('error.html', login_url=login_url, error="rip that didn't work :(", user=None)
 
 @app.route('/logout')
 def logout():
