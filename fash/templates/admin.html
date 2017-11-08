@@ -10,7 +10,7 @@
         <input type="text" name="new_task" placeholder="Task">
       </div>
       <div class="five wide field">
-        <input type="text" name="new_points" placeholder="Points">
+        <input type="number" name="new_points" placeholder="Points">
       </div>
       <button class="ui button" type="submit">Create</button>
     </form>
@@ -19,7 +19,7 @@
 
   <table class="ui celled striped table">
     <thead>
-      <tr><th colspan="3">
+      <tr><th colspan="4">
         Active Tasks
       </th>
     </tr></thead>
@@ -29,12 +29,17 @@
           <td>
             {{ task.name }}
           </td>
-          <td class="right aligned collapsing">{{ task.value }} points</td>
-          <td class="right aligned collapsing"><a href= {{ "/edittask?task=" + task.id|string }}> edit </a></td>
+          <td class="right aligned collapsing">
+            {{ task.value }} points
+          </td>
+          <td class="right aligned collapsing">
+            <a href= {{ "/edittask?task=" + task.id|string }}> <i class="write icon"></i></a>
+          </td>
+          <td class="right aligned collapsing">
+            <a href= {{ "/review?task=" + task.id|string }}> <i class="file text icon"></i></a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
-
-  <h2 class="ui header">Review Submissions</h2>
 {% endblock %}

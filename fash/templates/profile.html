@@ -8,5 +8,9 @@
     <strong>Family</strong>: {{ user.fam_mem.name }} </br>
     <strong>Points</strong>: {{ user.points }} </br>
   </p>
+
   <h3 class="ui header"> Completed FASH Tasks </h2>
+    {% for complete in completed %}
+      {{complete.task.name}}
+    {% endfor %}
 {% endblock %}

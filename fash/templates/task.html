@@ -1,0 +1,40 @@
+{% extends "nav.html" %}
+
+{% block content %}
+  <script>
+  $('select.dropdown')
+    .dropdown()
+  ;
+  </script>
+
+  <h1 class="ui header">
+    Edit Task
+    <div class="sub header"> {{ task.name }}</div>
+  </h1>
+
+  <form class="ui form" method="POST">
+    <input type="hidden" value="{{task.id}}" name="task">
+    <div class="field">
+      <label>Task Description</label>
+      <input type="text" name="name" value="{{task.name}}">
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>Points</label>
+        <input type="number" name="value" value="{{task.value}}">
+      </div>
+      <div class="field">
+        <label>Active</label>
+        <select class="ui fluid search dropdown" name="active">
+          <option selected value="True">True</option>
+          <option value="False">False</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>{{ message }} </label>
+    </div>
+    <button class="ui button primary" type="submit">Save</button>
+    <a class="ui button" href="/admin">Cancel</a>
+  </form>
+{% endblock %}

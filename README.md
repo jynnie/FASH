@@ -14,6 +14,7 @@ python runapp.py
 ```
 
 ## Configuration
+Both `config.py` and `constants.py` live in the `/fash` folder.
 `config.py` includes information used to set admins and OIDC. Below is an example:
 ```
 CLIENT_ID = ""

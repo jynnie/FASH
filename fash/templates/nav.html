@@ -9,22 +9,30 @@
      <a class="item" href="/leaderboard">
        Leaderboard
      </a>
+     <a class="item" href="/rules">
+       Rules
+     </a>
      <a class="item" href="/play">
        Play
      </a>
      <div class="right menu">
-       {% if user is not none %}
-         <a class="item" href="/profile">
-           Profile
-         </a>
-         <a class="item" href="/logout">
-           Logout
-         </a>
-       {% else %}
-         <a class="item" href="/login">
-           Login
-         </a>
-       {% endif %}
+      {% if user is not none %}
+        {% if user.email in ['jynnie@mit.edu', 'charleen@mit.edu'] %}
+          <a class="item" href="/admin">
+            Admin
+          </a>
+        {% endif %}
+        <a class="item" href="/profile">
+          Profile
+        </a>
+        <a class="item" href="/logout">
+          Logout
+        </a>
+      {% else %}
+        <a class="item" href="/login">
+          Login
+        </a>
+      {% endif %}
      </div>
   </div>
 </div>

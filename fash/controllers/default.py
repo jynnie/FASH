@@ -19,12 +19,11 @@ def index():
     return render_template("home.html", user=user)
 
 @app.route('/leaderboard')
+@get_user()
 def leaderboard():
     return 'leaderboard.html not yet implemented'
 
-@app.route('/profile')
+@app.route('/rules')
 @get_user()
-def profile():
-    if user is not None:
-        return render_template("profile.html", user=user)
-    return render_template('error.html', login_url=DOMAIN + "/login", error="You need to login first >:(", user=None)
+def rules():
+    return render_template('rules.html', user=user)

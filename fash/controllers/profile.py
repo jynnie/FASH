@@ -16,6 +16,22 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fash.models.user import *
 
+@app.route('/profile')
+@get_user()
+def profile():
+    if user is not None:
+        try:
+            engine = create_engine('sqlite:///fash.db', echo=False)
+            Session = sessionmaker(bind=engine)
+            db = Session()
+
+            completed = db.query(Completed).filter(Completed.user==user.id).all()
+        except Exception as e:
+            print('\n Failed to retrieve completed tasks :< \n')
+
+        return render_template("profile.html", user=user, completed=completed)
+    return render_template('error.html', login_url=DOMAIN + "/login", error="You need to login first >:(", user=None)
+
 @app.route('/edit', methods=['GET', 'POST'])
 @get_user()
 def edit():
@@ -38,8 +54,8 @@ def edit():
             except Exception as e:
                 print('Failed to change family!')
 
-                return render_template('edit.html', user=user, error='Failed to change family :< try again?')
+                return render_template('edit_profile.html', user=user, error='Failed to change family :< try again?')
 
-        return render_template('edit.html', user=user)
+        return render_template('edit_profile.html', user=user)
     else:
         return render_template('error.html', login_url=DOMAIN + "/login", error="You need to login first >:(", user=None)
