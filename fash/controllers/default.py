@@ -16,7 +16,18 @@ from flask import (
 @app.route('/index')
 @get_user()
 def index():
-    return render_template("home.html", user=user)
+    message = ''
+    completed = []
+    try:
+        engine = create_engine('sqlite:///fash.db', echo=False)
+        Session = sessionmaker(bind=engine)
+        db = Session()
+
+        completed = db.query(Completed).filter(Completed.valid==True, Completed.user != None).all()
+    except Exception as e:
+        message = "Sorry, we can't load pictures right now :( Let us know about this problem!"
+
+    return render_template("home.html", user=user, message=message, completed=completed)
 
 @app.route('/rules')
 @get_user()

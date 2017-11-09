@@ -25,6 +25,7 @@ def play():
             all_com = db.query(Completed).filter(Completed.user==user.id, Completed.valid==True).all()
             for complete in all_com:
                 completed.add(complete.task.id)
+            db.close()
         except Exception as e:
             print('\n Failed to retrieve completed tasks :< are you logged in? \n')
 

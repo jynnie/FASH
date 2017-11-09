@@ -2,5 +2,32 @@
 
 {% block content %}
   <h1 class="ui header"> Fall Asynchronous Scavenger Hunt (FASH) </h1>
-  <p>Welcome back {{ user.email }}</p>
+  {% if user is not none %}
+    <p>Welcome back, {{ user.email }}!</p>
+  {% endif %}
+  {{ message }}
+
+  <h2 class="ui header">Gallery
+    <div class="sub header">Mission success!</div>
+  </h2>
+  <div class="ui three stackable cards">
+    {% for complete in completed %}
+    <div class="teal card">
+      <div class="image">
+        <img src="{{complete.link}}">
+      </div>
+      <div class="content">
+        <div class="header">{{complete.task.name}}</div>
+      </div>
+      <div class="extra content">
+        <span class="left floated">
+          {{complete.player.email}}
+        </span>
+        <span class="right floated">
+          {{complete.task.value}} points
+        </span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 {% endblock %}

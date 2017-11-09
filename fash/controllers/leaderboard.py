@@ -31,6 +31,7 @@ def leaderboard():
                 fampts[fam] += c.task.value
         fams = sorted(list(fampts.keys()), key=lambda x: fampts[x], reverse=True)
 
+        db.close()
     except Exception as e:
         db.rollback()
         return render_template('error.html', error='Failed to retrieve completed tasks :I', user=user)

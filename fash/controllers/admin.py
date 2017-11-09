@@ -30,6 +30,7 @@ def admin():
 
                     db.add(task)
                     db.commit()
+                    db.close()
 
                     return redirect('/admin')
 
@@ -68,6 +69,7 @@ def edit_task():
                     task.active = edit_active
 
                     db.commit()
+                    db.close()
 
                     return render_template('task.html', user=user, task=task, message='Success!! C:')
 
