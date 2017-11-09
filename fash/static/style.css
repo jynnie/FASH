@@ -16,7 +16,7 @@ body{
 }
 
 .hilite{
-  color: #4ecdc4;
+  color: #00B5AD;
   display: inline;
 }
 
@@ -25,7 +25,6 @@ p{
 }
 
 img.preview{
-  width: 300px;
   max-width: 80vw;
   margin: 10px 0;
 }

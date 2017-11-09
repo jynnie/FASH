@@ -5,3 +5,4 @@ import fash.controllers.default
 import fash.controllers.admin
 import fash.controllers.play
 import fash.controllers.profile
+import fash.controllers.leaderboard

@@ -1,0 +1,25 @@
+{% extends "nav.html" %}
+
+{% block content %}
+  <h1 class="ui header">Leaderboard
+    <div class="sub header">May the odds be ever in your favor</div>
+  </h1>
+
+  <div class="ui large feed">
+    {% for fam in fams %}
+      <div class="event">
+        <div class="label">
+          <div class="ui small statistic {% if fams.index(fam) == 0 %} teal {% endif %}">
+            <div class="value">
+              #{{fams.index(fam) + 1}}
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <h3 class="summary">{{fam}}</h3>
+          <div class="extra text"> {{fampts[fam]}} points </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

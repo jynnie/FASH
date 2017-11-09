@@ -6,11 +6,28 @@
     <a href="/edit">edit details</a> </br>
     <strong>Email</strong>: {{ user.email }} </br>
     <strong>Family</strong>: {{ user.fam_mem.name }} </br>
-    <strong>Points</strong>: {{ user.points }} </br>
+    <strong>Points</strong>: {{ points }} </br>
   </p>
 
-  <h3 class="ui header"> Completed FASH Missions </h2>
-    {% for complete in completed %}
-      {{complete.task.name}} {{complete.task.id}}
-    {% endfor %}
+  <h3 class="ui header"> Completed Missions </h2>
+    <div class="ui three stackable cards">
+      {% for complete in completed %}
+      <div class="card">
+        <div class="image">
+          <img src="{{complete.link}}">
+        </div>
+        <div class="content">
+          <div class="header">{{complete.task.name}}</div>
+        </div>
+        <div class="extra content">
+          <span class="left floated">
+            {{complete.task.value}} points
+          </span>
+          <span class="right floated">
+            <a href={{"/submit?task=" + complete.task.id|string}}>edit submission</a>
+          </span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
 {% endblock %}

@@ -18,11 +18,6 @@ from flask import (
 def index():
     return render_template("home.html", user=user)
 
-@app.route('/leaderboard')
-@get_user()
-def leaderboard():
-    return 'leaderboard.html not yet implemented'
-
 @app.route('/rules')
 @get_user()
 def rules():

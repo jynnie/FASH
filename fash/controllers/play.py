@@ -22,7 +22,7 @@ def play():
             Session = sessionmaker(bind=engine)
             db = Session()
 
-            all_com = db.query(Completed).filter(Completed.user==user.id).all()
+            all_com = db.query(Completed).filter(Completed.user==user.id, Completed.valid==True).all()
             for complete in all_com:
                 completed.add(complete.task.id)
         except Exception as e:
@@ -52,10 +52,27 @@ def submit():
         if request.method == 'POST':
             try:
                 link = request.form['link']
-                complete.link = link
-                db.commit()
+                if complete is not None:
+                    if link == '' or link == ' ':
+                        complete.valid = False
+                    else:
+                        complete.valid = True
+                    complete.link = link
+                    db.commit()
+                else:
+                    this_user = db.query(Users).filter(Users.email == user.email).first()
+                    if link == '' or link == ' ':
+                        completion = Completed(player=this_user, task=task, link=link, valid=False)
+                    else:
+                        completion = Completed(player=this_user, task=task, link=link, valid=True)
+                    db.add(completion)
+                    db.commit()
 
-                return render_template('submit.html', user=user, task=task, complete=complete, message='Added link successfully! Check the preview to make sure it worked.')
+                if link == ' ' or link == '':
+                    message = "Successfully removed submission!"
+                else:
+                    message = 'Added link successfully! Check the preview to make sure it worked.'
+                return render_template('submit.html', user=user, task=task, complete=complete, message=message)
             except Exception as e:
                 return render_template('submit.html', user=user, task=task, complete=complete, message='Something went wrong :(')
 
