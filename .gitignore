@@ -1,7 +1,2 @@
 /venv
-/fash/config.py
-/fash/constants.py
-/fash/models/initiate.py
-/fash/models/families.py
 *.pyc
-fash.db
