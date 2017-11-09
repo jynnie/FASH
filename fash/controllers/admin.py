@@ -86,5 +86,33 @@ def edit_task():
 def review():
     if user is not None:
         if user.email in config.ADMINS:
-            return 'review.html not yet implemented'
+            try:
+                engine = create_engine('sqlite:///fash.db', echo=False)
+                Session = sessionmaker(bind=engine)
+                db = Session()
+
+                task_id = int(request.args.get('task'))
+                task = db.query(Tasks).filter(Tasks.id == task_id).first()
+
+                completed = db.query(Completed).filter(Completed.task_name == task.id).all()
+
+            except Exception as e:
+                return render_template('error.html', message="Looks like we ran into an issue getting the task :I", user=user)
+
+            if request.method == 'POST':
+                try:
+                    submission = db.query(Completed).filter(Completed.id == request.form['submission']).first()
+                    if 'valid' in request.form:
+                        submission.valid = True
+                    else:
+                        submission.valid = False
+
+                    return render_template('review.html', completed=completed, user=user, task=task, message='Success!! C:')
+
+                except Exception as e:
+                    print('Failed to edit task!')
+
+                    return render_template('review.html', user=user, completed=completed, task=task, message='Failed to edit submission :< try again?')
+
+            return render_template('review.html', task=task, user=user, completed=completed)
     return render_template('error.html', login_url=DOMAIN + '/login', error="You don't have access to this page", user=None)

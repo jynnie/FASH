@@ -1,0 +1,40 @@
+{% extends "nav.html" %}
+
+{% block content %}
+  <h1 class="ui header"> Review Submissions
+    <div class="sub header">{{task.name}}</div>
+  </h1>
+
+  {% if message %}
+    <p>{{ message }}</p>
+  {% endif %}
+
+  <div class="ui three stackable cards">
+    {% for complete in completed %}
+    <div class="{% if complete.valid %} green {% else %} red {% endif %} card">
+      <div class="image">
+        <img src="{{complete.link}}">
+      </div>
+      <div class="content">
+        <div class="description">Current Status: {{complete.valid}}</div>
+      </br>
+        <form method="POST">
+          <input type="hidden" name="submission" value="{{complete.id}}">
+          <div class="ui two buttons">
+            <button type="submit" class="ui basic green button" name="valid">Validate</button>
+            <button type="submit" class="ui basic red button" name="invalid">Invalidate</button>
+          </div>
+        </form>
+      </div>
+      <div class="extra content">
+        <span class="left floated">
+          {{complete.player.email}}
+        </span>
+        <span class="right floated">
+          {{complete.player.fam_mem.name}}
+        </span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

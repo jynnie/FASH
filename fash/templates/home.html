@@ -1,10 +1,12 @@
 {% extends "nav.html" %}
 
 {% block content %}
-  <h1 class="ui header"> Fall Asynchronous Scavenger Hunt (FASH) </h1>
-  {% if user is not none %}
-    <p>Welcome back, {{ user.email }}!</p>
-  {% endif %}
+  <h1 class="ui header"> FASH
+    <div class="sub header">Fall. Asynchronous. Scavenger. Hunt.</div>
+  </h1>
+  <p>FASH is a new social event created to promote family adventures! Hang out with your family, meet new people, and WIN PRIZES! </br> </br>
+  Check out <a href="/rules">rules</a> for more information and login with your MIT account to <span class="hilite">play now!</span></p>
+
   {{ message }}
 
   <h2 class="ui header">Gallery
