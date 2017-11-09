@@ -20,6 +20,7 @@ from fash.models.user import *
 @get_user()
 def profile():
     if user is not None:
+        completed = None
         try:
             engine = create_engine('sqlite:///fash.db', echo=False)
             Session = sessionmaker(bind=engine)
@@ -27,7 +28,8 @@ def profile():
 
             completed = db.query(Completed).filter(Completed.user==user.id).all()
         except Exception as e:
-            print('\n Failed to retrieve completed tasks :< \n')
+            print('\n Failed to retrieve completed tasks :< are you logged in? \n')
+            completed = set()
 
         return render_template("profile.html", user=user, completed=completed)
     return render_template('error.html', login_url=DOMAIN + "/login", error="You need to login first >:(", user=None)

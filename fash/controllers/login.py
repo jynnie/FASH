@@ -103,7 +103,7 @@ def login_page():
         if error == "":
             return redirect(login_url)
         else:
-            return render_template('error.html', login_url=login_url, error=error, user=None)
+            return render_template('error_login.html', login_url=login_url, error=error, user=None)
 
     except Exception as e:
         print('there was an exception')

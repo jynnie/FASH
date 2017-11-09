@@ -3,7 +3,7 @@
 {% block content %}
   <h1 class="ui header">Admin Page</h1>
 
-  <h2 class="ui header">Tasks</h2>
+  <h2 class="ui header">Missions</h2>
   <div class="ui form">
     <form class="inline fields" method="POST">
       <div class="ten wide field">
@@ -12,7 +12,7 @@
       <div class="five wide field">
         <input type="number" name="new_points" placeholder="Points">
       </div>
-      <button class="ui button" type="submit">Create</button>
+      <button class="ui button pink basic" type="submit">Create</button>
     </form>
   </div>
   {{ error }}
@@ -20,7 +20,7 @@
   <table class="ui celled striped table">
     <thead>
       <tr><th colspan="4">
-        Active Tasks
+        Active Missions
       </th>
     </tr></thead>
     <tbody>

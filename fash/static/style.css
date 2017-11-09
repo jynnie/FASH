@@ -14,3 +14,18 @@ body{
   margin-top: 10px;
   padding: 14px 0 25px;
 }
+
+.hilite{
+  color: #4ecdc4;
+  display: inline;
+}
+
+p{
+  font-size: 1.15em;
+}
+
+img.preview{
+  width: 300px;
+  max-width: 80vw;
+  margin: 10px 0;
+}

@@ -1,14 +1,8 @@
 {% extends "nav.html" %}
 
 {% block content %}
-  <script>
-  $('select.dropdown')
-    .dropdown()
-  ;
-  </script>
-
   <h1 class="ui header">
-    Edit Task
+    Edit Mission
     <div class="sub header"> {{ task.name }}</div>
   </h1>
 
@@ -35,6 +29,6 @@
       <label>{{ message }} </label>
     </div>
     <button class="ui button primary" type="submit">Save</button>
-    <a class="ui button" href="/admin">Cancel</a>
+    <a class="ui button" href="/admin">Back</a>
   </form>
 {% endblock %}

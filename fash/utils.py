@@ -82,11 +82,11 @@ def get_user_and_tasks():
             if 'jwt' in request.cookies:
                 try:
                     decoded = decode_token(request.cookies['jwt'])
+                    user = db.query(Users).filter(Users.id==decoded).first()
+                    f.__globals__['user'] = user
                 except Exception as e:
                     # FIXME Repeated code
                     f.__globals__['user'] = None
-                user = db.query(Users).filter(Users.id==decoded).first()
-                f.__globals__['user'] = user
             else:
                 f.__globals__['user'] = None
 

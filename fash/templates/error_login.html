@@ -1,5 +1,5 @@
 {% extends "nav.html" %}
 {% block content %}
-  <h1 class="ui header">Oh no!</h1>
   <div class="error-message">{{ error }}</div><br>
+  <a href="{{ login_url }}">try login again</a>
 {% endblock %}

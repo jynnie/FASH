@@ -9,8 +9,8 @@
     <strong>Points</strong>: {{ user.points }} </br>
   </p>
 
-  <h3 class="ui header"> Completed FASH Tasks </h2>
+  <h3 class="ui header"> Completed FASH Missions </h2>
     {% for complete in completed %}
-      {{complete.task.name}}
+      {{complete.task.name}} {{complete.task.id}}
     {% endfor %}
 {% endblock %}

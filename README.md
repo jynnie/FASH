@@ -41,3 +41,4 @@ SECRET = 'wellicanttellunowcani'
 
 ## Notes
 Thanks to [Shreyas](http://github.com/revalo) for help in setting up structure and setting up OIDC.
+Thanks to [Cory](http://github.com/cory2067) and [put.nu](http://put.nu) for helping host images.

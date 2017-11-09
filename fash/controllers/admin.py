@@ -46,12 +46,16 @@ def admin():
 def edit_task():
     if user is not None:
         if user.email in config.ADMINS:
-            engine = create_engine('sqlite:///fash.db', echo=False)
-            Session = sessionmaker(bind=engine)
-            db = Session()
+            try:
+                engine = create_engine('sqlite:///fash.db', echo=False)
+                Session = sessionmaker(bind=engine)
+                db = Session()
 
-            task_id = int(request.args.get('task'))
-            task = db.query(Tasks).filter(Tasks.id == task_id).first()
+                task_id = int(request.args.get('task'))
+                task = db.query(Tasks).filter(Tasks.id == task_id).first()
+
+            except Exception as e:
+                return render_template('error.html', message="Looks like we ran into an issue getting tasks :I", user=user)
 
             if request.method == 'POST':
                 try:
@@ -68,7 +72,7 @@ def edit_task():
                     return render_template('task.html', user=user, task=task, message='Success!! C:')
 
                 except Exception as e:
-                    print('Failed to change family!')
+                    print('Failed to edit task!')
 
                     return render_template('task.html', user=user, task=task, message='Failed to edit task :< try again?')
 

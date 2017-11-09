@@ -1,0 +1,29 @@
+{% extends "nav.html" %}
+
+{% block content %}
+  <h1 class="ui header">
+    Did you <div class="hilite">{{task.name|lower}}</div>?
+    <div class="sub header">pics or it didn't happen</div>
+  </h1>
+
+  {% if complete is not none %}
+    {% if complete.link != "" %}
+      <!-- Photo Preview Here -->
+      <img src="{{complete.link}}" class="preview">
+    {% endif %}
+  {% endif %}
+
+  <p> Submit a link to your photographic proof! We suggest uploading it to <a href="http://put.nu/">put.nu</a> (just make sure to set hosting time to 1 month). Otherwise, make sure the link ends in <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, or <code>.gif</code>.</p>
+
+  <form class="ui form" method="POST">
+    <input type="hidden" value="{{task.id}}" name="task">
+    <div class="field">
+      <input type="text" name="link" value="{{complete.link}}" placeholder="link to photo">
+    </div>
+    <div class="field">
+      <label>{{ message }}</label>
+    </div>
+    <button class="ui button pink basic" type="submit">Submit</button>
+    <a class="ui button basic" href="/play">Back</a>
+  </form>
+{% endblock %}
