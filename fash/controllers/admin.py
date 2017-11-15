@@ -107,6 +107,8 @@ def review():
                     else:
                         submission.valid = False
 
+                    db.commit()
+
                     return render_template('review.html', completed=completed, user=user, task=task, message='Success!! C:')
 
                 except Exception as e:
