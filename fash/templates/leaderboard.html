@@ -6,18 +6,18 @@
   </h1>
 
   <div class="ui large feed">
-    {% for fam in fams %}
+    {% for f in range(fams|length) %}
       <div class="event">
         <div class="label">
-          <div class="ui small statistic {% if fams.index(fam) == 0 %} teal {% endif %}">
+          <div class="ui small statistic {% if places[f] == 1 %} teal {% endif %}">
             <div class="value">
-              #{{fams.index(fam) + 1}}
+              #{{places[f]}}
             </div>
           </div>
         </div>
         <div class="content">
-          <h3 class="summary">{{fam}}</h3>
-          <div class="extra text"> {{fampts[fam]}} points </div>
+          <h3 class="summary">{{fams[f]}}</h3>
+          <div class="extra text"> {{fampts[fams[f]]}} points </div>
         </div>
       </div>
     {% endfor %}
