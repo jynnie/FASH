@@ -69,7 +69,6 @@ def edit_task():
                     task.active = edit_active
 
                     db.commit()
-                    db.close()
 
                     return render_template('task.html', user=user, task=task, message='Success!! C:')
 
